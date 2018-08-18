@@ -1,0 +1,66 @@
+$blue: #3f51b5;
+
+body {
+  margin: 0;
+}
+
+.home-page {
+  margin: 50px;
+}
+
+.container {
+  width: 55%;
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-area {
+  $padding: 20px;
+  $border-width: 1px;
+
+  width: calc(100% - #{($padding + $border-width) * 2 });
+  border: $blue $border-width solid;
+  border-radius: 2px;
+  padding: $padding;
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 1.1875em;
+  color: rgba(0, 0, 0, 0.87);
+  resize: none;
+  height: 500px;
+
+  &:focus, &:hover {
+    outline: none;
+    box-shadow:inset 0px 0px 0px 1px $blue;
+  }
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 260px;
+  margin: auto;
+}
+
+.step-1-container {
+  padding-top: 30px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.solution-highlight {
+  font-weight: bold;
+}
+
+.words-list {
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+  min-width: 210px;
+  align-items: center;
+}
