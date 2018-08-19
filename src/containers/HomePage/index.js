@@ -11,6 +11,7 @@ import TextForm from '../../components/exercise/TextForm';
 import SelectExerciseType from '../../components/exercise/SelectExerciseType';
 import ExerciseSolution from '../../components/exercise/ExerciseSolution';
 import Alert from '../../components/exercise/Alert';
+import { exercisePaths } from '../../constants/constants';
 
 const styles = () => ({
   root: {
@@ -58,25 +59,20 @@ class HomePage extends Component {
   generateExercise = () => {
     const { text, exerciseType } = this.state;
     this.setState({ loading: true });
-    const exercisePath = exerciseType === 'definicion-sustantivos' ? 'ejercicio-sustantivos' : 'ejercicio-verbos';
+    const exercisePath = exercisePaths[exerciseType];
     const request = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ texto: text })
     };
-    const url = `http://localhost:3000/${exercisePath}`;
-    // simulate server delay
-    setTimeout(
-      () =>
-        fetch(url, request)
-          .then(response =>
-            response.json().then((exercise) => {
-              this.setState({ exercise, loading: false });
-              this.goNextStep();
-            }))
-          .catch(() => this.setState({ loading: false })),
-      3000
-    );
+    const url = `${process.env.API_URL}${exercisePath}`;
+    fetch(url, request)
+      .then(response =>
+        response.json().then((exercise) => {
+          this.setState({ exercise, loading: false });
+          this.goNextStep();
+        }))
+      .catch(() => this.setState({ loading: false }));
   }
 
   saveExercise = () => {
@@ -88,18 +84,13 @@ class HomePage extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ejercicio: exercise })
     };
-    const url = `http://localhost:3000/${exercisePath}`;
-    // simulate server delay
-    setTimeout(
-      () =>
-        fetch(url, request)
-          .then(response =>
-            response.json().then(() => {
-              this.setState({ alert: true, success: true, loading: false });
-            }))
-          .catch(() => this.setState({ alert: true, success: false, loading: false })),
-      3000
-    );
+    const url = `${process.env.API_URL}${exercisePath}`;
+    fetch(url, request)
+      .then(response =>
+        response.json().then(() => {
+          this.setState({ alert: true, success: true, loading: false });
+        }))
+      .catch(() => this.setState({ alert: true, success: false, loading: false }));
   }
 
   render() {
@@ -167,16 +158,6 @@ class HomePage extends Component {
           }
           {activeStep === 2 && !loading &&
             <div>
-              <ExerciseSolution
-                type={exerciseType}
-                exercise={exercise}
-              />
-              { alert &&
-                <Alert
-                  message={success ? 'El ejercicio se guardó correctamente' : 'Hubo un error, vuelva a intentar más tarde'}
-                  success={success}
-                />
-              }
               <div className="buttons-container">
                 <Button
                   variant="raised"
@@ -196,6 +177,16 @@ class HomePage extends Component {
                   Guardar
                 </Button>
               </div>
+              <ExerciseSolution
+                type={exerciseType}
+                exercise={exercise}
+              />
+              { alert &&
+                <Alert
+                  message={success ? 'El ejercicio se guardó correctamente' : 'Hubo un error, vuelva a intentar más tarde'}
+                  success={success}
+                />
+              }
             </div>
           }
         </div>

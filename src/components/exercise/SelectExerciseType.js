@@ -6,6 +6,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 
+import { exerciseTypes } from '../../constants/constants';
+
 const styles = () => ({
   root: {
     marginBottom: '90px',
@@ -34,11 +36,14 @@ class SelectExerciseType extends PureComponent {
             id: 'exercise-input'
           }}
         >
-          <MenuItem value="verbos-conjugados">
+          <MenuItem value={exerciseTypes.verbosConjugados}>
             Verbos conjugados
           </MenuItem>
-          <MenuItem value="definicion-sustantivos">
+          <MenuItem value={exerciseTypes.definicionSustantivos}>
             Definición sustantivos
+          </MenuItem>
+          <MenuItem value={exerciseTypes.useOfEn}>
+            Use of English
           </MenuItem>
         </Select>
       </FormControl>
