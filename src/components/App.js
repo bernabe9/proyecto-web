@@ -13,7 +13,7 @@ class App extends PureComponent {
     return (
       <Fragment>
         <Helmet>
-          <title>Proyecto grado</title>
+          <title>Proyecto Ingles - Docentes</title>
         </Helmet>
         <AppBar />
         <ConnectedRouter history={history}>
