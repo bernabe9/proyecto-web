@@ -1,7 +1,20 @@
 $blue: #3f51b5;
 
+// pages
+@import './definiciones-page.scss';
+
 body {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-variant-ligatures: none;
+  font-variant-ligatures: none;
+  font-weight: 400;
+  height: 100%;
   margin: 0;
+  text-rendering: optimizeLegibility;
+  text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+  -webkit-text-size-adjust: 100%;
 }
 
 .home-page {
