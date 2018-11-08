@@ -43,7 +43,7 @@ class DefinicionesPage extends Component {
 
     if (loading) {
       return (
-        <div>
+        <div className="loading">
           <CircularProgress />
         </div>
       );

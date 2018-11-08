@@ -1,0 +1,27 @@
+.palabras-page {
+  max-width: 980px;
+  margin: 40px auto;
+  padding: 15px 30px;
+  border: solid 1px #737373;
+  border-radius: 5px;
+
+  .palabra {
+    cursor: pointer;
+    user-select: none;
+    margin: 5px 0;
+    text-decoration: underline;
+  }
+
+  .filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__letter {
+      text-transform: capitalize;
+      padding: 3px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}

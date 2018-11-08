@@ -1,6 +1,7 @@
 import routesPaths from './constants/routesPaths';
 import HomePage from './containers/HomePage';
 import DefinicionesPage from './containers/DefinicionesPage';
+import PalabrasPage from './containers/PalabrasPage';
 
 const routes = [
   {
@@ -11,6 +12,10 @@ const routes = [
   {
     path: routesPaths.definiciones,
     component: DefinicionesPage,
+  },
+  {
+    path: routesPaths.palabras,
+    component: PalabrasPage,
   },
 ];
 
