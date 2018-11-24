@@ -27,6 +27,7 @@ const styles = () => ({
 class HomePage extends Component {
   static propTypes = {
     classes: object.isRequired,
+    location: object.isRequired
   }
 
   state = {
@@ -37,6 +38,17 @@ class HomePage extends Component {
     success: false,
     alert: false
   };
+
+  componentDidMount() {
+    this.setSelectedText();
+  }
+
+  setSelectedText = () => {
+    const { state } = this.props.location;
+    if (state) {
+      this.setState({ text: state.text });
+    }
+  }
 
   goNextStep = () => {
     const { activeStep } = this.state;

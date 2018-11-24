@@ -2,6 +2,7 @@ import routesPaths from './constants/routesPaths';
 import HomePage from './containers/HomePage';
 import DefinicionesPage from './containers/DefinicionesPage';
 import PalabrasPage from './containers/PalabrasPage';
+import TextosPage from './containers/TextosPage';
 
 const routes = [
   {
@@ -17,6 +18,10 @@ const routes = [
     path: routesPaths.palabras,
     component: PalabrasPage,
   },
+  {
+    path: routesPaths.textos,
+    component: TextosPage,
+  }
 ];
 
 export default routes;
