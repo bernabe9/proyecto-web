@@ -63,7 +63,7 @@ class HomePage extends Component {
     const request = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ texto: text })
+      body: JSON.stringify({ texto: text, recordar_texto: true })
     };
     const url = `${process.env.API_URL}${exercisePath}`;
     fetch(url, request)
