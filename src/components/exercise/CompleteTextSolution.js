@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
-import { string, array, object } from 'prop-types';
+import { string, array, object, func } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import Highlighter from 'react-highlight-words';
+
+import TextSolutionOption from './TextSolutionOption';
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -12,10 +13,7 @@ const styles = theme => ({
     paddingBottom: 16,
     marginTop: 20,
     whiteSpace: 'pre-line'
-  }),
-  divider: {
-    margin: '12px auto'
-  }
+  })
 });
 
 class CompleteTextSolution extends PureComponent {
@@ -23,17 +21,12 @@ class CompleteTextSolution extends PureComponent {
     texto: string.isRequired,
     opciones: array.isRequired,
     classes: object.isRequired,
+    onRemoveReference: func.isRequired,
+    onModifyOption: func.isRequired
   }
 
   render() {
-    const { texto, opciones, classes } = this.props;
-    const optionsText = (option) => {
-      let optText = `${option.referencia}\n`;
-      option.variantes.map((variante) => {
-        optText = `${optText}${variante}\n`;
-      });
-      return optText;
-    };
+    const { texto, opciones, classes, onRemoveReference, onModifyOption } = this.props;
 
     return (
       <div>
@@ -48,18 +41,13 @@ class CompleteTextSolution extends PureComponent {
           </Typography>
         </Paper>
         <Paper className={classes.root} elevation={4}>
-          {opciones.map(option =>
-            <div key={option.posicion}>
-              <Typography style={{ whiteSpace: 'pre-line' }}>
-                <Highlighter
-                  highlightStyle={{ fontWeight: '900' }}
-                  searchWords={[`${option.solucion}\n`]}
-                  textToHighlight={optionsText(option)}
-                  autoEscape
-                />
-              </Typography>
-              <Divider className={classes.divider} />
-            </div>)
+          {opciones.map((option, index) =>
+            <TextSolutionOption
+              key={`${index}-${option.solucion}`}
+              option={option}
+              onDelete={() => onRemoveReference(option.referencia)}
+              onModify={onModifyOption}
+            />)
           }
         </Paper>
       </div>

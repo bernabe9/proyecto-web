@@ -97,3 +97,38 @@ body {
     padding: 0 5px;
   }
 }
+
+.solution-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  &__delete {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.variante-input {
+  display: block;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 1.46429em;
+  margin: 14px 0;
+
+  &--solution {
+    background-color: yellow;
+  }
+}
+
+.definicion-text-area {
+  width: 100%;
+  resize: vertical;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 400;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 1.46429em;
+  font-size: 16px;
+}
