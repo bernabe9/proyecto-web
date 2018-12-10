@@ -78,9 +78,9 @@ class DefinitionNounSolution extends PureComponent {
           <Typography variant="title" className={classes.title} component="h5">
             Solución
           </Typography>
-          {soluciones.map((solucion, index) =>
+          {soluciones.map(solucion =>
             <DefinitionSolution
-              key={index}
+              key={solucion.palabra}
               solucion={solucion}
               onRemove={onRemoveReference}
               onModify={onModifyDefinition}

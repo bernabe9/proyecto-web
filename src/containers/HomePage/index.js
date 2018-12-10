@@ -52,9 +52,21 @@ class HomePage extends Component {
 
   onModifyDefinition = (solucion) => {
     const { exercise } = this.state;
-    const newOption = exercise.soluciones.find(sol => sol.palabra === solucion.palabra);
-    newOption.palabra = solucion.palabra;
-    newOption.definicion = solucion.definicion;
+    const request = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ejercicio: exercise,
+        referencia: solucion.palabra,
+        definicion: solucion.definicion
+      })
+    };
+    const url = `${process.env.API_URL}ejercicio-sustantivos`;
+    fetch(url, request)
+      .then(response =>
+        response.json().then((exercise) => {
+          this.setState({ exercise });
+        }));
   };
 
   onRemoveReference = (reference) => {
