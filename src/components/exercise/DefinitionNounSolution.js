@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
-import { array, object } from 'prop-types';
+import { array, object, func } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Chip from '@material-ui/core/Chip';
+
+import DefinitionSolution from './DefinitionSolution';
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -35,10 +37,19 @@ class DefinitionNounSolution extends PureComponent {
     palabras: array.isRequired,
     soluciones: array.isRequired,
     classes: object.isRequired,
+    onRemoveReference: func.isRequired,
+    onModifyDefinition: func.isRequired,
   }
 
   render() {
-    const { definiciones, palabras, soluciones, classes } = this.props;
+    const {
+      definiciones,
+      palabras,
+      soluciones,
+      classes,
+      onRemoveReference,
+      onModifyDefinition,
+    } = this.props;
 
     return (
       <div>
@@ -68,9 +79,12 @@ class DefinitionNounSolution extends PureComponent {
             Solución
           </Typography>
           {soluciones.map((solucion, index) =>
-            <Typography key={index} className={classes.p} component="p">
-              <b style={{ textTransform: 'capitalize' }}>{solucion.palabra}</b>: {solucion.definicion}
-            </Typography>)
+            <DefinitionSolution
+              key={index}
+              solucion={solucion}
+              onRemove={onRemoveReference}
+              onModify={onModifyDefinition}
+            />)
           }
         </Paper>
       </div>

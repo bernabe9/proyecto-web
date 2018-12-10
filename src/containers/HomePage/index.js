@@ -43,6 +43,35 @@ class HomePage extends Component {
     this.setSelectedText();
   }
 
+  onModifyOption = (option) => {
+    const { exercise } = this.state;
+    const newOption = exercise.opciones.find(opt => opt.referencia === option.referencia);
+    newOption.solucion = option.solucion;
+    newOption.variantes = option.variantes;
+  }
+
+  onModifyDefinition = (solucion) => {
+    const { exercise } = this.state;
+    const newOption = exercise.soluciones.find(sol => sol.palabra === solucion.palabra);
+    newOption.palabra = solucion.palabra;
+    newOption.definicion = solucion.definicion;
+  };
+
+  onRemoveReference = (reference) => {
+    const { exercise } = this.state;
+    const request = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ejercicio: exercise, referencia: reference })
+    };
+    const url = `${process.env.API_URL}eliminar-referencia`;
+    fetch(url, request)
+      .then(response =>
+        response.json().then((exercise) => {
+          this.setState({ exercise });
+        }));
+  }
+
   setSelectedText = () => {
     const { state } = this.props.location;
     if (state) {
@@ -192,6 +221,9 @@ class HomePage extends Component {
               <ExerciseSolution
                 type={exerciseType}
                 exercise={exercise}
+                onRemoveReference={this.onRemoveReference}
+                onModifyOption={this.onModifyOption}
+                onModifyDefinition={this.onModifyDefinition}
               />
               { alert &&
                 <Alert

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { string } from 'prop-types';
 
 class Definicion extends Component {
+  static propTypes = {
+    word: string,
+  }
+
   state = {
     loading: false,
     showDefinition: false
