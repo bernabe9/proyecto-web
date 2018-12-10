@@ -65,6 +65,10 @@ body {
   justify-content: space-between;
   width: 260px;
   margin: auto;
+
+  &--wide {
+    width: 422px;
+  }
 }
 
 .step-1-container {

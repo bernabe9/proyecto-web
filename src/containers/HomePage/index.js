@@ -91,6 +91,8 @@ class HomePage extends Component {
     }
   }
 
+  downloadInput = React.createRef();
+
   goNextStep = () => {
     const { activeStep } = this.state;
     this.setState({ activeStep: activeStep + 1 });
@@ -140,10 +142,18 @@ class HomePage extends Component {
     const url = `${process.env.API_URL}${exercisePath}`;
     fetch(url, request)
       .then(response =>
-        response.json().then(() => {
-          this.setState({ alert: true, success: true, loading: false });
+        response.json().then((exercise) => {
+          this.setState({ exercise, alert: true, success: true, loading: false });
         }))
       .catch(() => this.setState({ alert: true, success: false, loading: false }));
+  }
+
+  downloadExercise = () => {
+    const { exercise } = this.state;
+    const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(exercise))}`;
+    this.downloadInput.current.setAttribute('href', dataStr);
+    this.downloadInput.current.setAttribute('download', 'ejercicio.json');
+    this.downloadInput.current.click();
   }
 
   render() {
@@ -211,7 +221,7 @@ class HomePage extends Component {
           }
           {activeStep === 2 && !loading &&
             <div>
-              <div className="buttons-container">
+              <div className="buttons-container buttons-container--wide">
                 <Button
                   variant="raised"
                   color="inherit"
@@ -225,10 +235,23 @@ class HomePage extends Component {
                   variant="raised"
                   color="primary"
                   size="large"
+                  className={classes.button}
                   onClick={this.saveExercise}
                 >
                   Guardar
                 </Button>
+                {success &&
+                  <Button
+                    variant="raised"
+                    color="primary"
+                    size="large"
+                    className={classes.button}
+                    onClick={this.downloadExercise}
+                  >
+                    Descargar
+                  </Button>
+                }
+                <a ref={this.downloadInput} style={{ display: 'none' }}>Hidden input</a>
               </div>
               <ExerciseSolution
                 type={exerciseType}
