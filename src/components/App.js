@@ -15,16 +15,18 @@ class App extends PureComponent {
         <Helmet>
           <title>Proyecto Ingles - Docentes</title>
         </Helmet>
-        <AppBar />
         <ConnectedRouter history={history}>
-          <Switch>
-            {routes.map((route, index) =>
-              <RouteFromPath
-                key={`route${index}`}
-                {...route}
-              />)
-            }
-          </Switch>
+          <Fragment>
+            <AppBar />
+            <Switch>
+              {routes.map((route, index) =>
+                <RouteFromPath
+                  key={`route${index}`}
+                  {...route}
+                />)
+              }
+            </Switch>
+          </Fragment>
         </ConnectedRouter>
       </Fragment>
     );
