@@ -46,16 +46,6 @@ class AddDefinition extends Component {
     if (showInput) {
       return (
         <div className="add-definition">
-          <input
-            value={inputValue}
-            className="input"
-            onChange={({ target }) => this.handleInputChange(target.value)}
-          />
-          <textarea
-            value={textValue}
-            className="input"
-            onChange={({ target }) => this.handleTextChange(target.value)}
-          />
           <Button
             variant="raised"
             color="primary"
@@ -64,6 +54,22 @@ class AddDefinition extends Component {
           >
             Agregar entrada
           </Button>
+          <div className="input-container">
+            <span>Palabra </span>
+            <input
+              value={inputValue}
+              className="input"
+              onChange={({ target }) => this.handleInputChange(target.value)}
+            />
+          </div>
+          <div className="input-container">
+            <span>Definicion </span>
+            <textarea
+              value={textValue}
+              className="input"
+              onChange={({ target }) => this.handleTextChange(target.value)}
+            />
+          </div>
           {alert &&
             <Alert
               message="Definición agregada correctamente"
