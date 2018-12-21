@@ -45,6 +45,9 @@ class SelectExerciseType extends PureComponent {
           <MenuItem value={exerciseTypes.useOfEn}>
             Use of English
           </MenuItem>
+          <MenuItem value={exerciseTypes.hiponimos}>
+            Hiponimos
+          </MenuItem>
         </Select>
       </FormControl>
     );
