@@ -3,6 +3,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Definicion from './Definicion';
 import Filter from './Filter';
+import AddDefinition from './AddDefinition';
 
 class DefinicionesPage extends Component {
   state = {
@@ -24,6 +25,7 @@ class DefinicionesPage extends Component {
     fetch(url, request)
       .then(response =>
         response.json().then((words) => {
+          words = this.sortWords(words);
           this.setState({ words, loading: false });
         }))
       .catch(() => this.setState({ loading: false }));
@@ -35,6 +37,32 @@ class DefinicionesPage extends Component {
       return words;
     }
     return words.filter(word => word.toLowerCase()[0] === filter.toLowerCase());
+  }
+
+  sortWords = words =>
+    words.sort((a, b) => {
+      a = a.toLowerCase();
+      b = b.toLowerCase();
+      if (a < b) return -1;
+      if (a > b) return 1;
+      return 0;
+    });
+
+  addDefinition = (palabra, definicion) => {
+    const request = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ palabra, definicion })
+    };
+    const url = `${process.env.API_URL}palabras-definiciones`;
+    fetch(url, request)
+      .then(response =>
+        response.json().then(() => {
+          let { words } = this.state;
+          words = this.sortWords(words.concat(palabra));
+          this.setState({ words, loading: false });
+        }))
+      .catch(() => this.setState({ loading: false }));
   }
 
   render() {
@@ -52,6 +80,7 @@ class DefinicionesPage extends Component {
     return (
       <div className="definiciones-page">
         <h3>Diccionario</h3>
+        <AddDefinition onAdd={this.addDefinition} />
         <Filter
           onChange={filter => this.setState({ filter })}
         />
