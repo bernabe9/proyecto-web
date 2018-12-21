@@ -30,9 +30,15 @@ const styles = theme => ({
 });
 
 class HiponimosSolution extends PureComponent {
+  static propTypes = {
+    categorias: array.isRequired,
+    opciones: array.isRequired,
+    classes: object.isRequired,
+    onRemoveReference: func.isRequired,
+  }
+
   render() {
     const { categorias, opciones, classes, onRemoveReference } = this.props;
-    // debugger;
     return (
       <div>
         <Paper className={classes.root} elevation={4}>
