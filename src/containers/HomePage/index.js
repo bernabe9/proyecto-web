@@ -221,7 +221,7 @@ class HomePage extends Component {
           }
           {activeStep === 2 && !loading &&
             <div>
-              <div className="buttons-container buttons-container--wide">
+              <div className="buttons-container">
                 <Button
                   variant="raised"
                   color="inherit"
@@ -231,15 +231,17 @@ class HomePage extends Component {
                 >
                   Atrás
                 </Button>
-                <Button
-                  variant="raised"
-                  color="primary"
-                  size="large"
-                  className={classes.button}
-                  onClick={this.saveExercise}
-                >
-                  Guardar
-                </Button>
+                {!success &&
+                  <Button
+                    variant="raised"
+                    color="primary"
+                    size="large"
+                    className={classes.button}
+                    onClick={this.saveExercise}
+                  >
+                    Guardar
+                  </Button>
+                }
                 {success &&
                   <Button
                     variant="raised"

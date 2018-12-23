@@ -51,7 +51,7 @@ class TextSolutionOption extends Component {
     const { option } = this.state;
     if (this.state.modifying) {
       return (
-        <Typography style={{ whiteSpace: 'pre-line' }}>
+        <Typography style={{ whiteSpace: 'pre-line' }} component="div">
           <p>{option.referencia}</p>
           {option.variantes.map((variante, index) =>
             <input
@@ -65,7 +65,7 @@ class TextSolutionOption extends Component {
       );
     }
     return (
-      <Typography style={{ whiteSpace: 'pre-line' }}>
+      <Typography style={{ whiteSpace: 'pre-line' }} component="div">
         <p>{option.referencia}</p>
         {option.variantes.map(variante =>
           <p key={variante}>{this.renderVariante(variante)}</p>)
