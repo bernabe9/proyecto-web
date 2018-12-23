@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
+import Button from '@material-ui/core/Button';
 
 class Definicion extends Component {
   static propTypes = {
     word: string,
+    onDelete: func,
   }
 
   state = {
@@ -42,6 +44,15 @@ class Definicion extends Component {
     }
   }
 
+  handleDelete = () => {
+    const { onDelete, word } = this.props;
+    // eslint-disable-next-line
+    const answer = confirm(`Seguro que quiere borrar la definicion "${word}"`);
+    if (answer === true) {
+      onDelete(word);
+    }
+  }
+
   render() {
     const { word } = this.props;
     const { loading, showDefinition, definitions } = this.state;
@@ -72,6 +83,14 @@ class Definicion extends Component {
                   <p><strong>Traducciones:</strong> {traducciones.join(', ')}</p>
                 }
               </div>)}
+            <Button
+              variant="raised"
+              color="primary"
+              size="large"
+              onClick={this.handleDelete}
+            >
+              Eliminar
+            </Button>
             <hr />
           </div>
         }
