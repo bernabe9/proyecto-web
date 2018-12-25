@@ -3,6 +3,7 @@ import HomePage from './containers/HomePage';
 import DefinicionesPage from './containers/DefinicionesPage';
 import PalabrasPage from './containers/PalabrasPage';
 import TextosPage from './containers/TextosPage';
+import EjerciciosPage from './containers/EjerciciosPage';
 
 const routes = [
   {
@@ -21,6 +22,10 @@ const routes = [
   {
     path: routesPaths.textos,
     component: TextosPage,
+  },
+  {
+    path: routesPaths.ejercicios,
+    component: EjerciciosPage,
   }
 ];
 

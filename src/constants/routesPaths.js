@@ -2,7 +2,8 @@ const routes = {
   index: '/',
   definiciones: '/definiciones',
   palabras: '/palabras',
-  textos: '/textos'
+  textos: '/textos',
+  ejercicios: '/ejercicios'
 };
 
 export default routes;
