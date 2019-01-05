@@ -41,6 +41,11 @@ function AppBar(props) {
             Palabras
           </Button>
         </Link>
+        <Link to="/ejercicios" className="navbar-link">
+          <Button color="inherit">
+            Ejercicios
+          </Button>
+        </Link>
       </Toolbar>
     </AppBarMaterial>
   );

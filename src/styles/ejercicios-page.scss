@@ -1,0 +1,36 @@
+.ejercicios-page {
+  max-width: 465px;
+  margin: 40px auto;
+  padding: 15px 30px;
+  border: none;
+
+  .title {
+    text-align: center;
+  }
+
+  .palabra {
+    cursor: pointer;
+    user-select: none;
+    margin: 5px 0;
+    text-decoration: underline;
+  }
+
+  .filter {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    &__letter {
+      cursor: pointer;
+      padding: 3px;
+      text-decoration: underline;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.subtitle-contaier {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+}
