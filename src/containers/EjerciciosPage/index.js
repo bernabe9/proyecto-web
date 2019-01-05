@@ -23,7 +23,7 @@ class ExercisesPage extends Component {
     fetch(url, request)
       .then(response =>
         response.json().then((exercises) => {
-          this.setState({ exercises, loading: false });
+          this.setState({ exercises: exercises.reverse(), loading: false });
         }))
       .catch(() => this.setState({ loading: false }));
   }

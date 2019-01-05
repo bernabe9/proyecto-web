@@ -50,12 +50,12 @@ class ExercisesList extends Component {
 
     return (
       <List>
-        {exercises.map(({ _id, tipo, date }, index) =>
+        {exercises.map(({ _id, tipo, date, numero }) =>
           <ListItem
             key={_id}
             button
           >
-            <ListTitle>{`Ejercicio ${index + 1}`}</ListTitle>
+            <ListTitle>{`Ejercicio ${numero}`}</ListTitle>
             <div className="subtitle-contaier">
               <ListSubTitle>{formatExerciseTypes[tipo]}</ListSubTitle>
               <ListSubTitle className={classes.grow}>{date ? format(new Date(date), 'DD/MM/YYYY') : ''}</ListSubTitle>
